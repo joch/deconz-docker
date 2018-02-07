@@ -23,6 +23,7 @@ dpkg -i deconz-${DECONZ_VERSION}-qt5.deb && \
 rm deconz-${DECONZ_VERSION}-qt5.deb
 
 RUN chown root:root /usr/bin/deCONZ*
+RUN mkdir /root/otau
 RUN mkdir -p /run/udev/data/ && \
 echo "E:ID_VENDOR_ID=0403\nE:ID_MODEL_ID=6015" > /run/udev/data/c188:0
 
