@@ -1,6 +1,5 @@
 FROM ubuntu:xenial
 
-ENV DECONZ_VERSION 2.04.99
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
@@ -16,6 +15,8 @@ libqt5websockets5 \
 libqt5sql5 \
 sqlite3 && \
 apt-get clean
+
+ENV DECONZ_VERSION 2.04.99
 
 RUN curl -O https://www.dresden-elektronik.de/deconz/ubuntu/beta/deconz-${DECONZ_VERSION}-qt5.deb && \
 dpkg -i deconz-${DECONZ_VERSION}-qt5.deb && \
