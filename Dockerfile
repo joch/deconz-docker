@@ -16,7 +16,7 @@ libqt5sql5 \
 sqlite3 && \
 apt-get clean
 
-ENV DECONZ_VERSION 2.04.99
+ENV DECONZ_VERSION 2.05.01
 
 RUN curl -O https://www.dresden-elektronik.de/deconz/ubuntu/beta/deconz-${DECONZ_VERSION}-qt5.deb && \
 dpkg -i deconz-${DECONZ_VERSION}-qt5.deb && \
