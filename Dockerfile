@@ -17,6 +17,8 @@ sqlite3 && \
 apt-get clean
 
 ENV DECONZ_VERSION 2.05.07
+ENV DECONZ_WEB_PORT 8080
+ENV DECONZ_WS_PORT 443
 
 RUN curl -O https://www.dresden-elektronik.de/deconz/ubuntu/beta/deconz-${DECONZ_VERSION}-qt5.deb && \
 dpkg -i deconz-${DECONZ_VERSION}-qt5.deb && \
@@ -28,6 +30,7 @@ RUN mkdir -p /run/udev/data/ && \
 echo "E:ID_VENDOR_ID=0403\nE:ID_MODEL_ID=6015" > /run/udev/data/c188:0
 
 VOLUME ["/root/.local/share/dresden-elektronik/deCONZ"]
-EXPOSE 8080
+EXPOSE ${DECONZ_WEB_PORT}
+EXPOSE ${DECONZ_WS_PORT}
 
-CMD /usr/bin/deCONZ --auto-connect=1 -platform minimal --upnp=0 --http-port=8080 --dbg-error=1
+CMD /usr/bin/deCONZ --auto-connect=1 -platform minimal --upnp=0 --http-port=${DECONZ_WEB_PORT} --ws-port=${DECONZ_WS_PORT} --dbg-error=1
