@@ -11,6 +11,13 @@ UPNP discovery is disabled in this container, so to use deconz and Phoscon, use 
 - deconz: http://[ip]:8080/
 - phoscon: http://[ip]:8080/pwa/
 
+You can change the default port from 8080 by providing the environment variable `DECONZ_WEB_PORT` like this:
+```
+docker run -d --name="deconz" --net="host" -e TZ="Europe/Berlin" -e DECONZ_WEB_PORT=8090 -p 8090:8090/tcp -v "/[appdata folder]/deconz":"/root/.local/share/dresden-elektronik/deCONZ":rw --device /dev/ttyUSB0:/dev/ttyUSB0 joch/deconz
+
+```
+The same goes for deconz web sockets port `DECONZ_WS_PORT`
+
 Please open an issue if you find any issues running this.
 
 ## Updating the firmware
@@ -47,3 +54,26 @@ docker restart deconz
 ```
 
 Now your Conbee stick should be updated and you should be ready to go.
+
+## Example using docker-compose:
+
+This example shows how to using this image with docker-compose.
+
+```yaml
+  deconz:
+    container_name: deconz
+    hostname: deconz
+    image: joch/deconz
+    restart: always
+    environment:
+      - TZ="Europe/Stockholm"
+      - DECONZ_WEB_PORT=8080  # This is the default web (http) port
+      - DECONZ_WS_PORT=443    # This is the default web sockets port
+    ports:
+      - "8080:8080"
+      - "443:443"
+    volumes:
+      - /deconz:/root/.local/share/dresden-elektronik/deCONZ:rw
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+```
