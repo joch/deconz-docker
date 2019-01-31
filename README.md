@@ -1,5 +1,7 @@
 # deCONZ in Docker
 
+Please use [marthoc/deconz](https://github.com/marthoc/deconz) if you need faster updates to the Docker image.
+
 This will run deCONZ in Docker. Please follow the following command (or equivalent) to launch the deCONZ container:
 
 ```
