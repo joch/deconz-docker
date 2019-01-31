@@ -13,6 +13,7 @@ libqt5gui5 \
 libqt5serialport5 \
 libqt5websockets5 \
 libqt5sql5 \
+lsof \
 sqlite3 && \
 apt-get clean
 
